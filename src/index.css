@@ -15,10 +15,10 @@ body{color:var(--color-metal);font-family:var(--font-body);-webkit-font-smoothin
 .btn-glow>span{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 34px;background:var(--color-red);color:#fff;font:700 22px/1 var(--font-head);letter-spacing:.08em;clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
 .btn-glow>span:after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,#ffffff80 50%,transparent 65%);transform:translateX(-120%);transition:transform .6s}
 .btn-glow:hover>span:after{transform:translateX(120%)}
-.btn-line{cursor:pointer;padding:2px;background:conic-gradient(from var(--a),#ffffff26 0 65%,var(--color-cyan) 80%,#ffffff26 95%);clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);animation:spin 3s linear infinite}
+.btn-line{display:inline-block;transform:none;cursor:pointer;padding:2px;background:conic-gradient(from var(--a),#ffffff26 0 65%,var(--color-cyan) 80%,#ffffff26 95%);clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);animation:bdr 3s linear infinite}
 .btn-line>span{display:flex;align-items:center;justify-content:center;min-height:52px;padding:0 32px;background:var(--color-ink);color:var(--color-metal);font:700 22px/1 var(--font-head);letter-spacing:.08em;clip-path:polygon(13px 0,100% 0,100% calc(100% - 13px),calc(100% - 13px) 100%,0 100%,0 13px);transition:background .3s}
 .btn-line:hover>span{background:#0b1a22}
-@keyframes spin{to{--a:360deg}}
+@keyframes bdr{to{--a:360deg}}
 .strip{position:absolute;bottom:0;left:-60px;height:100%;width:max-content;display:flex;will-change:transform;animation:mv linear infinite}
 .strip svg{display:block;flex:none;height:100%;width:auto;aspect-ratio:4/1}
 @keyframes mv{from{transform:translateX(-33.3333%)}to{transform:none}}
@@ -55,4 +55,3 @@ body{color:var(--color-metal);font-family:var(--font-body);-webkit-font-smoothin
 .inp{width:100%;min-height:50px;padding:0 16px;background:#ffffff0d;border:1px solid #ffffff1f;color:var(--color-metal);font:16px var(--font-body);outline:none;transition:border-color .2s,background .2s}
 .inp:focus{border-color:var(--color-cyan);background:#1fe3ff0d}
 @media(hover:none){.btn-glow:hover{filter:none}.btn-glow:hover>span:after{transform:translateX(-120%)}}
-@media(prefers-reduced-motion:reduce){*,:before,:after{animation:none!important;transition:none!important}}

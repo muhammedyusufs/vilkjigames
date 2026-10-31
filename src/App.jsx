@@ -1,8 +1,8 @@
 import{useCallback,useEffect,useRef,useState}from'react'
-import{LazyMotion,domAnimation,m,AnimatePresence,MotionConfig,useScroll,useTransform,useMotionValue,useSpring,useMotionValueEvent,useReducedMotion}from'framer-motion'
+import{LazyMotion,domAnimation,m,AnimatePresence,MotionConfig,useScroll,useTransform,useMotionValue,useSpring,useMotionValueEvent}from'framer-motion'
 
 const SB='https://wwbbuqijpvdtcztufdjg.supabase.co',KEY='sb_publishable_YvNslNhD188PwtgHlPAz5w_9V3-x-g_',GH='muhammedyusufs/vilkjigames',MAIL='vilkji20@gmail.com',TRAILER=''
-const RM=matchMedia('(prefers-reduced-motion: reduce)').matches
+const RM=false
 const UA=navigator.userAgent,OSN=/Android/i.test(UA)?'and':/iPhone|iPad|iPod|Macintosh/i.test(UA)?'ios':'win'
 const PAGES={'/ozellikler':'ozellikler','/indir':'indir'}
 const ease=[.22,1,.36,1],SP={stiffness:220,damping:18}
@@ -177,7 +177,7 @@ const Fx=()=><m.div className="pointer-events-none fixed inset-0 z-[100] overflo
 
 export default function App(){
 const[lang,sl]=useState(()=>{try{return localStorage.lang||(navigator.language.startsWith('tr')?'tr':'en')}catch{return'tr'}})
-const[fx,sf]=useState(false),[acc,sa]=useState(''),rm=useReducedMotion(),t=T[lang],busy=useRef(false)
+const[fx,sf]=useState(false),[acc,sa]=useState(''),rm=false,t=T[lang],busy=useRef(false)
 const[ses,ss0]=useState(store.get),setSes=useCallback(v=>{store.set(v);ss0(v)},[]),[note,sn]=useState('')
 useEffect(()=>{const h=new URLSearchParams(location.hash.slice(1));if(!h.has('access_token')&&!h.has('error'))return;history.replaceState(0,'',location.pathname+location.search)
 if(h.has('error'))return sn(t.m.linkBad),sa('in');const at=h.get('access_token');fetch(SB+'/auth/v1/user',{headers:{apikey:KEY,Authorization:'Bearer '+at}}).then(r=>r.ok?r.json():null).catch(()=>null).then(u=>{setSes(mk({access_token:at,refresh_token:h.get('refresh_token'),expires_at:+h.get('expires_at')||0,expires_in:+h.get('expires_in')||3600,user:u||{}}));sn(h.get('type')==='recovery'?t.m.linkRec:t.m.okd);sa('in')})},[])
@@ -191,6 +191,6 @@ useEffect(()=>{if(want.current){jump(want.current);want.current=null}else scroll
 const to=p=>{if(p!==location.pathname)history.pushState(0,'',p);sp(p)}
 const nav=id=>{const p=Object.keys(PAGES).find(k=>PAGES[k]===id);if(p)return path===p?jump():run(()=>to(p));if(path!=='/'){want.current=id;return run(()=>to('/'))}jump(id,1)}
 const open=k=>run(()=>sa(k))
-return<LazyMotion features={domAnimation} strict><MotionConfig reducedMotion="user"><Prog/><Nav t={t} lang={lang} sl={sl} nav={nav} path={path} ses={ses} acc={()=>sa('in')}/>
+return<LazyMotion features={domAnimation} strict><MotionConfig reducedMotion="never"><Prog/><Nav t={t} lang={lang} sl={sl} nav={nav} path={path} ses={ses} acc={()=>sa('in')}/>
 <main key={path}>{path==='/ozellikler'?<Arm t={t}/>:path==='/indir'?<Dl t={t}/>:<><Hero t={t} ses={ses} play={()=>nav('indir')} acc={()=>open(ses?'in':'up')}/><Media t={t}/><About t={t}/></>}</main><Foot t={t}/>
 <AnimatePresence>{acc&&<Acc t={t} close={close} ses={ses} setSes={setSes} start={acc} note={note}/>}</AnimatePresence><AnimatePresence>{fx&&<Fx/>}</AnimatePresence></MotionConfig></LazyMotion>}
