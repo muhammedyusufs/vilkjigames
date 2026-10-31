@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@theme{--color-ink:#07080d;--color-coal:#11131b;--color-coal2:#191c27;--color-indigo:#1c1550;--color-red:#ff2e4d;--color-cyan:#1fe3ff;--color-metal:#e9edf5;--color-mute:#8b91a7;--font-head:"Barlow Condensed",sans-serif;--font-body:Outfit,system-ui,sans-serif}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+html{-webkit-tap-highlight-color:transparent}
+body{color:var(--color-metal);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden;background:linear-gradient(#ffffff05 1px,transparent 1px) 0 0/56px 56px,linear-gradient(90deg,#ffffff05 1px,transparent 1px) 0 0/56px 56px,var(--color-ink)}
+::selection{background:var(--color-red);color:#fff}
+.wr{width:min(1200px,100% - 32px);margin-inline:auto}
+.cut{clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
+.kick{display:flex;align-items:center;gap:12px;font:600 13px/1 var(--font-body);letter-spacing:.3em;color:var(--color-red)}
+.kick:before{content:'';width:28px;height:2px;background:currentColor}
+.stroke{color:transparent;-webkit-text-stroke:2px var(--color-red);text-shadow:0 0 40px #ff2e4d40}
+.btn-glow{position:relative;cursor:pointer;transition:filter .3s}
+.btn-glow:hover{filter:drop-shadow(0 0 18px #ff2e4daa)}
+.btn-glow:disabled{opacity:.6;pointer-events:none}
+.btn-glow>span{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 34px;background:var(--color-red);color:#fff;font:700 22px/1 var(--font-head);letter-spacing:.08em;clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px)}
+.btn-glow>span:after{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,#ffffff80 50%,transparent 65%);transform:translateX(-120%);transition:transform .6s}
+.btn-glow:hover>span:after{transform:translateX(120%)}
+.btn-line{cursor:pointer;padding:2px;background:conic-gradient(from var(--a),#ffffff26 0 65%,var(--color-cyan) 80%,#ffffff26 95%);clip-path:polygon(14px 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%,0 14px);animation:spin 3s linear infinite}
+.btn-line>span{display:flex;align-items:center;justify-content:center;min-height:52px;padding:0 32px;background:var(--color-ink);color:var(--color-metal);font:700 22px/1 var(--font-head);letter-spacing:.08em;clip-path:polygon(13px 0,100% 0,100% calc(100% - 13px),calc(100% - 13px) 100%,0 100%,0 13px);transition:background .3s}
+.btn-line:hover>span{background:#0b1a22}
+@keyframes spin{to{--a:360deg}}
+.strip{position:absolute;bottom:0;left:-60px;height:100%;width:max-content;display:flex;will-change:transform;animation:mv linear infinite}
+.strip svg{display:block;flex:none;height:100%;width:auto;aspect-ratio:4/1}
+@keyframes mv{from{transform:translateX(-33.3333%)}to{transform:none}}
+.floor{position:absolute;inset-inline:0;bottom:0;height:24%;perspective:260px;overflow:hidden;background:linear-gradient(#ff2e4d14,transparent)}
+.floor:before{content:'';position:absolute;inset:0 0 auto;height:1px;z-index:1;background:var(--color-red);box-shadow:0 0 22px 2px var(--color-red)}
+.floor:after{content:'';position:absolute;inset:0;background:linear-gradient(var(--color-ink),transparent 45%)}
+.floor b{position:absolute;left:-60%;right:-60%;top:0;height:400%;transform:rotateX(72deg);transform-origin:top center}
+.floor i{position:absolute;inset:-80px 0 0;background:linear-gradient(#1fe3ff45 1px,transparent 1px) 0 0/80px 80px,linear-gradient(90deg,#1fe3ff45 1px,transparent 1px) 0 0/80px 80px;animation:fl 1.4s linear infinite}
+@keyframes fl{to{transform:translateY(80px)}}
+.pt{opacity:.7;animation:pt linear infinite alternate}
+@keyframes pt{to{transform:translate3d(10px,-60px,0);opacity:.15}}
+.sl i{display:block;height:50%;background:var(--color-red);animation:sl 1.6s ease-in-out infinite}
+@keyframes sl{from{transform:translateY(-100%)}to{transform:translateY(200%)}}
+.dash{animation:da 1.2s linear infinite}
+@keyframes da{to{stroke-dashoffset:-32}}
+.spin{transform-box:fill-box;transform-origin:center;animation:rot 10s linear infinite}
+@keyframes rot{to{transform:rotate(1turn)}}
+.blink{animation:bl 3s steps(1) infinite}
+@keyframes bl{50%{opacity:.1}}
+.pulse{transform-box:fill-box;transform-origin:center;animation:pu 2s ease-out infinite}
+@keyframes pu{from{transform:scale(1);opacity:.9}to{transform:scale(1.5);opacity:0}}
+.gi:before,.gi:after,.gx:before,.gx:after{content:attr(data-t);position:absolute;inset:0;pointer-events:none}
+.gi:before{color:var(--color-cyan);clip-path:inset(18% 0 58% 0);transform:translateX(-5px);opacity:0;animation:gl 4.5s steps(1) infinite}
+.gi:after{color:var(--color-red);clip-path:inset(62% 0 12% 0);transform:translateX(5px);opacity:0;animation:gl 4.5s steps(1) .08s infinite}
+@keyframes gl{0%,90%,92%,95%,100%{opacity:0}91%,93%,96%{opacity:1}}
+.gx{position:relative}
+.gx:before{color:var(--color-cyan);animation:g1 .3s steps(2) infinite}
+.gx:after{color:var(--color-red);animation:g2 .25s steps(2) infinite}
+@keyframes g1{from{clip-path:inset(10% 0 60% 0);transform:translateX(-6px)}to{clip-path:inset(55% 0 20% 0);transform:translateX(6px)}}
+@keyframes g2{from{clip-path:inset(65% 0 5% 0);transform:translateX(6px)}to{clip-path:inset(20% 0 50% 0);transform:translateX(-6px)}}
+.speed{background:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0 2.5deg,#ffffff40 2.5deg 3deg);mask:radial-gradient(circle,transparent 22%,#000 70%);animation:zm .45s linear infinite}
+@keyframes zm{from{transform:scale(1)}to{transform:scale(1.25)}}
+.scan:after{content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(transparent 0 2px,#00000030 2px 4px)}
+.inp{width:100%;min-height:50px;padding:0 16px;background:#ffffff0d;border:1px solid #ffffff1f;color:var(--color-metal);font:16px var(--font-body);outline:none;transition:border-color .2s,background .2s}
+.inp:focus{border-color:var(--color-cyan);background:#1fe3ff0d}
+@media(hover:none){.btn-glow:hover{filter:none}.btn-glow:hover>span:after{transform:translateX(-120%)}}
+@media(prefers-reduced-motion:reduce){*,:before,:after{animation:none!important;transition:none!important}}
