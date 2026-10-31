@@ -1,7 +1,7 @@
 import{useCallback,useEffect,useRef,useState}from'react'
 import{LazyMotion,domAnimation,m,AnimatePresence,MotionConfig,useScroll,useTransform,useMotionValue,useSpring,useMotionValueEvent,useReducedMotion}from'framer-motion'
 
-const E=import.meta.env,SB=E.VITE_SUPABASE_URL,KEY=E.VITE_SUPABASE_ANON_KEY,TABLE='versions',MAIL='iletisim@ornek.com',TRAILER=''
+const E=import.meta.env,SB=E.VITE_SUPABASE_URL,KEY=E.VITE_SUPABASE_ANON_KEY,TABLE='versions',MAIL='vilkji20@gmail.com',TRAILER=''
 const RM=matchMedia('(prefers-reduced-motion: reduce)').matches
 const AND=/Android/i.test(navigator.userAgent)
 const ease=[.22,1,.36,1],SP={stiffness:220,damping:18}
